@@ -75,7 +75,7 @@ class CharacteristicCallbacks : public BLECharacteristicCallbacks
       {
         digitalWrite(LED, LOW);
         digitalWrite(BUZZER, LOW);
-            }
+      }
       // else if (rxValue.find("L1") != -1)
       // {
       //   Serial.print("Turning LED ON!");
@@ -144,6 +144,10 @@ void loop()
   // se existe algum dispositivo conectado
   if (deviceConnected)
   {
+    char txString[256] = "connected";
+    characteristicTX->setValue(txString); // seta o valor que a caracteristica notificará (enviar)
+    characteristicTX->notify();
+
     int value = digitalRead(BUTTON);
     // Serial.print(value);
 
@@ -152,7 +156,7 @@ void loop()
       digitalWrite(LED, HIGH);
       delay(100);
       digitalWrite(LED, LOW);
-      char txString[8] = "A1";
+      char txString[8] = "find";
       characteristicTX->setValue(txString); // seta o valor que a caracteristica notificará (enviar)
       characteristicTX->notify();           // Envia o valor para o smartphone
       Serial.print("*** Sent Value: ");
