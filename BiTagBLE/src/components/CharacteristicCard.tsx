@@ -45,6 +45,7 @@ const CharacteristicCard = ({ char }: CharacteristicCardProps) => {
     });
   }, [char]);
 
+  let valueDisplay: String = '';
   // write on a charactestic the number 6 (e.g.)
   const writeCharacteristic = () => {
     // encode the string with the Base64 algorythm
@@ -54,6 +55,7 @@ const CharacteristicCard = ({ char }: CharacteristicCardProps) => {
         console.warn('Success');
       })
       .catch((e) => console.log('Error', e));
+    valueDisplay = "Press to find";
   };
 
   return (
@@ -62,6 +64,7 @@ const CharacteristicCard = ({ char }: CharacteristicCardProps) => {
       style={styles.container}
       onPress={writeCharacteristic}>
       <Text style={styles.measure}>{measure}</Text>
+      <Text style={styles.measure}>{valueDisplay}</Text>
     </TouchableOpacity>
   );
 };
