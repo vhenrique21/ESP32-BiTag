@@ -18,6 +18,8 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
     false,
   );
 
+console.log(service);
+
   useEffect(() => {
     const getCharacteristics = async () => {
       const newCharacteristics = await service.characteristics();
@@ -27,8 +29,10 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
         setDescriptors((prev) => [...new Set([...prev, ...newDescriptors])]);
       });
     };
+    if(service.uuid == "ab0828b1-198e-4351-b779-901fa0e0371e"){
+      getCharacteristics();
+    }
 
-    getCharacteristics();
   }, [service]);
 
   return (
@@ -37,7 +41,7 @@ const ServiceCard = ({ service }: ServiceCardProps) => {
         onPress={() => {
           setAreCharacteristicsVisible((prev) => !prev);
         }}>
-        <Text>{`UUID : ${service.uuid}`}</Text>
+      <Text>{`UUID : ${service.uuid}`}</Text>
       </TouchableOpacity>
 
       {areCharacteristicsVisible &&

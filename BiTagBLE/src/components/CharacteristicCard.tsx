@@ -44,8 +44,14 @@ const CharacteristicCard = ({ char }: CharacteristicCardProps) => {
       }
     });
   }, [char]);
-
   let valueDisplay: String = '';
+  if(char.isWritableWithResponse){
+    valueDisplay = 'Click to find your BiTag';
+  }
+  else{
+    valueDisplay = 'Status:';
+  }
+
   // write on a charactestic the number 6 (e.g.)
   const writeCharacteristic = () => {
     // encode the string with the Base64 algorythm
@@ -55,16 +61,15 @@ const CharacteristicCard = ({ char }: CharacteristicCardProps) => {
         console.warn('Success');
       })
       .catch((e) => console.log('Error', e));
-    valueDisplay = "Press to find";
   };
 
   return (
     <TouchableOpacity
-      key={char.uuid}
+      //key={char.uuid}
       style={styles.container}
       onPress={writeCharacteristic}>
-      <Text style={styles.measure}>{measure}</Text>
       <Text style={styles.measure}>{valueDisplay}</Text>
+      <Text style={styles.measure}>{measure}</Text>
     </TouchableOpacity>
   );
 };
