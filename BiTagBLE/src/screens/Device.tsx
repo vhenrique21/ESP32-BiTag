@@ -54,13 +54,9 @@ const DeviceScreen = ({
       <Button title="disconnect" onPress={disconnectDevice} />
       <View>
         <View style={styles.header}>
-          <Text>{`Id : ${device.id}`}</Text>
           <Text>{`Name : ${device.name}`}</Text>
           <Text>{`Is connected : ${isConnected}`}</Text>
-          <Text>{`RSSI : ${device.rssi}`}</Text>
-          <Text>{`Manufacturer : ${device.manufacturerData}`}</Text>
-          <Text>{`ServiceData : ${device.serviceData}`}</Text>
-          <Text>{`UUIDS : ${device.serviceUUIDs}`}</Text>
+          
         </View>
         {/* Display a list of all services */}
         {services &&

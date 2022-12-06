@@ -55,7 +55,7 @@ const HomeScreen = () => {
       }
 
       // if a device is detected add the device to the list by dispatching the action into the reducer
-      if (scannedDevice) {
+      if (scannedDevice?.name == "ESP32-BLE") {
         dispatch({ type: 'ADD_DEVICE', payload: scannedDevice });
       }
     });

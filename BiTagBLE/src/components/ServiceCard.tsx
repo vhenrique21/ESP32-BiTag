@@ -9,7 +9,7 @@ type ServiceCardProps = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const UART_SERVICE_UUID = '6E400001-B5A3-F393-­E0A9-­E50E24DCCA9E'.toLowerCase();
+const SERVICE_UUID = 'ab0828b1-198e-4351-b779-901fa0e0371e';
 
 const ServiceCard = ({ service }: ServiceCardProps) => {
   const [descriptors, setDescriptors] = useState<Descriptor[]>([]);

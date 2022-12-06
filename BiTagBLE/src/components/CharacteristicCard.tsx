@@ -36,8 +36,10 @@ const CharacteristicCard = ({ char }: CharacteristicCardProps) => {
         return;
       }
       // each received value has to be decoded with a Base64 algorythm you can find on the Internet (or in my repository 😉)
-      setMeasure(decodeBleString(cha?.value));
-      if(decodeBleString(cha?.value) == "102"){
+      const decodedValue = Base64.decode(cha?.value);
+
+      setMeasure(decodedValue);
+      if (decodedValue == 'find') {
         Vibration.vibrate(2000)
       }
     });
@@ -60,15 +62,6 @@ const CharacteristicCard = ({ char }: CharacteristicCardProps) => {
       style={styles.container}
       onPress={writeCharacteristic}>
       <Text style={styles.measure}>{measure}</Text>
-      <Text style={styles.descriptor}>{descriptor}</Text>
-      <Text>{`isIndicatable : ${char.isIndicatable}`}</Text>
-      <Text>{`isNotifiable : ${char.isNotifiable}`}</Text>
-      <Text>{`isNotifying : ${char.isNotifying}`}</Text>
-      <Text>{`isReadable : ${char.isReadable}`}</Text>
-      <TouchableOpacity>
-        <Text>{`isWritableWithResponse : ${char.isWritableWithResponse}`}</Text>
-      </TouchableOpacity>
-      <Text>{`isWritableWithoutResponse : ${char.isWritableWithoutResponse}`}</Text>
     </TouchableOpacity>
   );
 };
