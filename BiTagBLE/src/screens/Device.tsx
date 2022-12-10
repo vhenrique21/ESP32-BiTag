@@ -4,6 +4,7 @@ import { Text, ScrollView, Button, View, StyleSheet } from 'react-native';
 import { Service } from 'react-native-ble-plx';
 import { ServiceCard } from '../components/ServiceCard';
 import { RootStackParamList } from '../navigation/index';
+import SoundPlayer from 'react-native-sound-player'
 
 const DeviceScreen = ({
   route,
@@ -40,6 +41,11 @@ const DeviceScreen = ({
     getDeviceInformations();
 
     device.onDisconnected(() => {
+      try {
+              SoundPlayer.playSoundFile('ding', 'mp3')
+          } catch (e) {
+              console.log(`cannot play the sound file`, e)
+          }
       navigation.navigate('Home');
     });
 
@@ -56,7 +62,7 @@ const DeviceScreen = ({
         <View style={styles.header}>
           <Text>{`Name : ${device.name}`}</Text>
           <Text>{`Is connected : ${isConnected}`}</Text>
-          
+
         </View>
         {/* Display a list of all services */}
         {services &&
