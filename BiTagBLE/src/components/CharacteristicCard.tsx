@@ -3,6 +3,7 @@ import { StyleSheet, Text, Vibration } from 'react-native';
 import { Characteristic } from 'react-native-ble-plx';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Base64 } from '../lib/base64';
+import SoundPlayer from 'react-native-sound-player'
 
 type CharacteristicCardProps = {
   char: Characteristic;
@@ -41,6 +42,11 @@ const CharacteristicCard = ({ char }: CharacteristicCardProps) => {
       setMeasure(decodedValue);
       if (decodedValue == 'find') {
         Vibration.vibrate(2000)
+        try {
+                SoundPlayer.playSoundFile('ding', 'mp3')
+            } catch (e) {
+                console.log(`cannot play the sound file`, e)
+            }
       }
     });
   }, [char]);
